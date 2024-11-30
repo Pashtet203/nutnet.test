@@ -1,0 +1,14 @@
+.header{
+    background-color: #2A2F45;
+    width: 100%;
+    height: 65px;
+}
+
+.logo{
+    width: 30px;
+    height: 30px;
+}
+
+.title{
+    font-weight: 700;
+}
