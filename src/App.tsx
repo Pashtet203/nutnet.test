@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
         <Header/>
-      <div className={"container"}>
+      <div className="container">
         <Routes>
           <Route element={<pages.NotFoundPage/>} path={"*"}/>
           <Route element={<pages.HomePage/>} path={"/"}/>

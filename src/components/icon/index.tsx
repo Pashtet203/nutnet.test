@@ -10,6 +10,8 @@ import {ReactComponent as Snow} from "../../media/img/weather/snow.svg"
 import {ReactComponent as Thunderstorm} from "../../media/img/weather/thunderstorm.svg"
 import {ReactComponent as Tornado} from "../../media/img/weather/tornado.svg"
 import {ReactComponent as Dust} from "../../media/img/weather/dust.svg"
+import {ReactComponent as Arrow} from "../../media/img/home/arrow.svg"
+import {ReactComponent as Bookmark} from "../../media/img/home/bookmark.svg"
 
 type TIconProps = {
     id:string,
@@ -29,7 +31,8 @@ const Icon = ({id,className}:TIconProps) => {
         "thunderstorm" : <Thunderstorm className={className}/>,
         "tornado" : <Tornado className={className}/>,
         "dust" : <Dust className={className}/>,
-
+        "arrow": <Arrow className={className}/>,
+        "bookmark" : <Bookmark className={className}/>,
     }
     return (
         <>

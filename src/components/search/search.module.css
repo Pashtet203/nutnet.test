@@ -1,0 +1,55 @@
+.search{
+    width: 100%;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form{
+    max-width: 510px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*justify-content: center;*/
+}
+
+.field{
+    height: 55px;
+    max-width: 510px;
+    width: 100%;
+    background-color: #2A2F45;
+    border: none;
+    border-radius: 2px;
+    padding: 10px;
+    font-size: 16px;
+    color: white;
+}
+.field::placeholder{
+    color: #8A91AB;
+}
+.field:focus{
+    outline: none;
+}
+
+.info{
+    color: #8A91AB;
+    max-width: 210px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    position: relative;
+}
+
+.text{
+    text-align:  center;
+    position: relative;
+}
+
+.arrow{
+    position: absolute;
+    left: -50px;
+    top: -15px;
+}
