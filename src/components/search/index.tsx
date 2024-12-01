@@ -6,6 +6,7 @@ const Search = () => {
         <div className={cl.search}>
             <form className={cl.form}>
                 <input type="text" className={cl.field} placeholder="Укажите город"/>
+
                 <div className={cl.info}>
                     {/*<Icon id={"arrow"} className={cl.arrow}/>*/}
                     <p className={cl.text}>
@@ -13,6 +14,7 @@ const Search = () => {
                         Начните вводить город, <br/> например, <a className={cl.link}>Ижевск</a>
                     </p>
                 </div>
+
             </form>
 
         </div>

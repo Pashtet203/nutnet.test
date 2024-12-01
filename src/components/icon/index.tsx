@@ -12,6 +12,8 @@ import {ReactComponent as Tornado} from "../../media/img/weather/tornado.svg"
 import {ReactComponent as Dust} from "../../media/img/weather/dust.svg"
 import {ReactComponent as Arrow} from "../../media/img/home/arrow.svg"
 import {ReactComponent as Bookmark} from "../../media/img/home/bookmark.svg"
+import {ReactComponent as ArrowLeft} from "../../media/img/arrow__left.svg"
+import {ReactComponent as Barometer} from "../../media/img/home/barometer.svg"
 
 type TIconProps = {
     id:string,

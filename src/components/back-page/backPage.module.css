@@ -1,0 +1,8 @@
+.backPage{
+    color: #8A91AB;
+    display: flex;
+    align-items: center;
+}
+.arrowLeft{
+    margin-right: 15px;
+}
