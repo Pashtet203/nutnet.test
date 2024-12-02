@@ -10,6 +10,8 @@ import {useFetching} from "../../hooks/useFetching";
 import {getWeatherInCity} from "../../utils/api/weather/getWeatherInCity";
 import {TCityList} from "../../utils/types/cityList";
 import {getListCity} from "../../utils/api/weather/getListCity";
+import Highlighter from "react-highlight-words";
+
 const Search = () => {
     const dispatch = useAppDispatch();
     const searchString = useAppSelector(store => store.homeReducer.searchString)
@@ -39,6 +41,10 @@ const Search = () => {
         }
     },[searchString])
 
+    const test = (name:string, searchString:string) =>{
+
+    }
+
     return (
         <div className={cl.search}>
             <form className={cl.form}
@@ -54,15 +60,24 @@ const Search = () => {
                 />
 
                 <div className={cl.list__result}
-                     style={cityList.length === 0 || searchString === "" ? {display: "none"} : {display: "flex"}}>
+                     style={ searchString === "" ? {display: "none"} : {display: "flex"}}>
                     {
-                        cityList.map((city: TCityList) => (
-                            <div className={cl.list__item} key={city.lat}>
-                                {
-                                    city.local_names === undefined ? city.name : city.local_names.ru
-                                }
+                        cityList.length === 0 ?
+                            <div className={cl.notCity}>
+                                Такого города нет
                             </div>
-                        ))
+                        :
+
+                            cityList.map((city: TCityList) => (
+                                <a className={cl.list__item} key={city.lat}>
+                                    {
+                                        city.local_names === undefined ?
+                                            <Highlighter highlightClassName={cl.highliter} searchWords={[searchString]} textToHighlight={city.name}/>
+                                            :
+                                            <Highlighter highlightClassName={cl.highliter} searchWords={[searchString]} textToHighlight={city.local_names.ru}/>
+                                    }
+                                </a>
+                            ))
                     }
                 </div>
                 <div className={cl.info}>
