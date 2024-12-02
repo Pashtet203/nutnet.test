@@ -12,6 +12,9 @@ function App() {
         <Routes>
           <Route element={<pages.NotFoundPage/>} path={"*"}/>
           <Route element={<pages.HomePage/>} path={"/"}/>
+          <Route path={"city"}>
+              <Route element={<pages.CityPage/>} path={":coordinate"}/>
+          </Route>
         </Routes>
       </div>
     </div>

@@ -1,12 +1,14 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {IInitialStateHomeReducer} from "../../utils/types/redux";
-import {getWeather} from "./action";
 import {TCityList} from "../../utils/types/cityList";
+import {TWeatherInCity} from "../../utils/types/weather";
 
 
 const initialState:IInitialStateHomeReducer = {
     searchString:"",
     cityList:[],
+    weatherInCity: null,
+    favoriteCity:[],
 }
 
 const homeSlice = createSlice({
@@ -22,17 +24,21 @@ const homeSlice = createSlice({
         clearListCity:(state) =>{
             state.cityList = []
         },
+        setWeatherInCity:(state,action:PayloadAction<TWeatherInCity>) => {
+            state.weatherInCity = action.payload;
+        }
     },
     extraReducers: builder =>
         builder
-            .addCase(getWeather.fulfilled,(state,action)=>{
-                console.log(action.payload)
-            })
+            // .addCase(getWeather.fulfilled,(state,action)=>{
+            //     console.log(action.payload)
+            // })
 })
 
 export const homeReducer = homeSlice.reducer
 export const {
     setSearchString,
     clearListCity,
-    setListCity
+    setListCity,
+    setWeatherInCity,
 } = homeSlice.actions

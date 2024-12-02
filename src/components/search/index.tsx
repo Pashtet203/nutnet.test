@@ -4,13 +4,12 @@ import Icon from "../icon";
 import {useAppSelector} from "../../hooks/useAppSelector";
 import {clearListCity, homeReducer, setListCity, setSearchString} from "../../redux/home/reducer";
 import {useAppDispatch} from "../../hooks/useAppDispatch";
-import {getWeather} from "../../redux/home/action";
 import {debounce} from "../../utils/debounce";
 import {useFetching} from "../../hooks/useFetching";
-import {getWeatherInCity} from "../../utils/api/weather/getWeatherInCity";
 import {TCityList} from "../../utils/types/cityList";
 import {getListCity} from "../../utils/api/weather/getListCity";
 import Highlighter from "react-highlight-words";
+import {Link} from "react-router-dom";
 
 const Search = () => {
     const dispatch = useAppDispatch();
@@ -72,9 +71,15 @@ const Search = () => {
                                 <a className={cl.list__item} key={city.lat}>
                                     {
                                         city.local_names === undefined ?
-                                            <Highlighter highlightClassName={cl.highliter} searchWords={[searchString]} textToHighlight={city.name}/>
+                                            <Link to={`/city/${city.lat}-${city.lon}`}>
+                                                <Highlighter highlightClassName={cl.highliter} searchWords={[searchString]} textToHighlight={city.name}/>
+                                            </Link>
+
                                             :
-                                            <Highlighter highlightClassName={cl.highliter} searchWords={[searchString]} textToHighlight={city.local_names.ru}/>
+                                            <Link to={`/city/${city.lat}-${city.lon}`}>
+                                                <Highlighter highlightClassName={cl.highliter} searchWords={[searchString]} textToHighlight={city.local_names.ru}/>
+                                            </Link>
+
                                     }
                                 </a>
                             ))
