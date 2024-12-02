@@ -9,10 +9,3 @@ export const getWeather = createAsyncThunk(
         return await getWeatherInCity(city)
     }
 )
-
-export const getCities = createAsyncThunk(
-    'home/getListCity',
-    async (str:string) => {
-        return await getListCity(str)
-    }
-)

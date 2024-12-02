@@ -13,6 +13,32 @@
     flex-direction: column;
     align-items: center;
     /*justify-content: center;*/
+    /*position: relative;*/
+}
+.list__result{
+    /*position: absolute;*/
+    width: 100%;
+    background-color: #30354B;
+    color: white;
+    min-height: 55px;
+    padding: 10px;
+    border-radius: 0 0 2px 2px;
+    display: flex;
+    flex-direction: column;
+}
+.list__item{
+    display: flex;
+    align-items: center;
+    height: 40px;
+    padding: 0 5px;
+    margin-bottom: 10px;
+    transition: ease-in 0.3s;
+    border-radius: 2px;
+}
+.list__item:hover{
+    background-color: #8A91AB;
+    color: #161B30;
+
 }
 
 .field{
