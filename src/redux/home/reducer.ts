@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {IInitialStateHomeReducer} from "../../utils/types/redux";
-import {getWeather} from "./action";
+import {getCities, getWeather} from "./action";
 
 
 const initialState:IInitialStateHomeReducer = {
@@ -18,6 +18,9 @@ const homeSlice = createSlice({
     extraReducers: builder =>
         builder
             .addCase(getWeather.fulfilled,(state,action)=>{
+                console.log(action.payload)
+            })
+            .addCase(getCities.fulfilled,(state,action)=>{
                 console.log(action.payload)
             })
 })
