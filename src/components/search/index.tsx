@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo} from 'react';
+import React, {useEffect, useMemo, useRef} from 'react';
 import cl from "./search.module.css"
 import Icon from "../icon";
 import {useAppSelector} from "../../hooks/useAppSelector";
@@ -16,6 +16,9 @@ const Search = () => {
     const searchString = useAppSelector(store => store.homeReducer.searchString)
     const cityList = useAppSelector(store => store.homeReducer.cityList)
 
+    const inputSearchField = useRef<any>()
+    const wrapperField = useRef<any>();
+
     const [fetch,loading,error] = useFetching(async (searchString)=>{
         const res:TCityList[] = await getListCity(searchString)
         dispatch(setListCity(res))
@@ -28,28 +31,49 @@ const Search = () => {
 
     const handlerSearchField = (e:any) =>{
             dispatch(setSearchString(e.target.value))
+    }
 
+    const focusInput = () =>{
+        if (searchString.length > 0){
+            wrapperField.current.classList.remove(`${cl.hide}`)
+        }
+    }
+    const blurInput = () =>{
+        wrapperField.current?.classList.add(`${cl.hide}`)
+        inputSearchField.current?.classList.remove(`${cl.focus__input}`)
     }
 
     useEffect(()=>{
         if (searchString.length > 2){
+            if (!inputSearchField.current.classList.contains(`${cl.focus__input}`) || wrapperField.current.classList.contains(`${cl.hide}`)){
+                inputSearchField.current.classList.add(`${cl.focus__input}`)
+                wrapperField.current.classList.remove(`${cl.hide}`)
+            }
+            if (cityList.length > 0){
+                wrapperField.current.classList.add(`${cl.hide}`)
+            }
             debouncedFetch(searchString)
         }
+        else {
+
+            inputSearchField.current.classList.remove(`${cl.focus__input}`)
+            wrapperField.current.classList.add(`${cl.hide}`)
+        }
+
         if(searchString === ""){
             dispatch(clearListCity())
         }
     },[searchString])
-
-    const test = (name:string, searchString:string) =>{
-
-    }
 
     return (
         <div className={cl.search}>
             <form className={cl.form}
             >
                 <input
+                    ref={inputSearchField}
                     type="text"
+                    onBlur={()=>setTimeout(()=>{blurInput()},200)}
+                    onFocus={focusInput}
                     className={cl.field}
                     placeholder="Укажите город"
                     value={searchString}
@@ -58,8 +82,7 @@ const Search = () => {
                     }}
                 />
 
-                <div className={cl.list__result}
-                     style={ searchString === "" ? {display: "none"} : {display: "flex"}}>
+                <div className={cl.list__result} ref={wrapperField}>
                     {
                         cityList.length === 0 ?
                             <div className={cl.notCity}>
@@ -71,12 +94,13 @@ const Search = () => {
                                 <a className={cl.list__item} key={city.lat}>
                                     {
                                         city.local_names === undefined ?
-                                            <Link to={`/city/${city.lat}-${city.lon}`}>
+                                            <Link to={`/city/${city.lat}-${city.lon}`} style={{color:"#8A91AB"}} className={cl.result__link}>
                                                 <Highlighter highlightClassName={cl.highliter} searchWords={[searchString]} textToHighlight={city.name}/>
+
                                             </Link>
 
                                             :
-                                            <Link to={`/city/${city.lat}-${city.lon}`}>
+                                            <Link to={`/city/${city.lat}-${city.lon}`} style={{color:"#8A91AB"}} className={cl.result__link}>
                                                 <Highlighter highlightClassName={cl.highliter} searchWords={[searchString]} textToHighlight={city.local_names.ru}/>
                                             </Link>
 
@@ -85,7 +109,7 @@ const Search = () => {
                             ))
                     }
                 </div>
-                <div className={cl.info}>
+                <div className={cl.info} style={searchString.length === 0 ? {visibility:"visible"} : {visibility:"hidden"}}>
                     {/*<Icon id={"arrow"} className={cl.arrow}/>*/}
                     <p className={cl.text}>
                         <Icon id={"arrow"} className={cl.arrow}/>
