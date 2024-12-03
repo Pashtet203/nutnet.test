@@ -2,6 +2,11 @@
     color: white;
     background-color: transparent;
 }
+
+.hide{
+    display: none;
+}
+
 .search{
     width: 100%;
     margin-top: 100px;
@@ -10,29 +15,26 @@
     align-items: center;
 }
 
-.hide{
-    display: none;
-}
-
 .form{
     max-width: 510px;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    /*justify-content: center;*/
-    /*position: relative;*/
+    position: relative;
+
 }
 .list__result{
-    /*position: absolute;*/
-    bottom: 0;
-    z-index: 999;
+    position: absolute;
+    top: 55px;
+    /*bottom: 0;*/
     width: 100%;
     background-color: #30354B;
     min-height: 55px;
     padding: 10px;
     border-radius: 0 0 2px 2px;
 }
+
 .list__item{
     display: flex;
     align-items: center;

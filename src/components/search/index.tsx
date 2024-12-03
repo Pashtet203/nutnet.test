@@ -72,7 +72,9 @@ const Search = () => {
                 <input
                     ref={inputSearchField}
                     type="text"
-                    onBlur={()=>setTimeout(()=>{blurInput()},200)}
+                    onBlur={() => setTimeout(() => {
+                        blurInput()
+                    }, 200)}
                     onFocus={focusInput}
                     className={cl.field}
                     placeholder="Укажите город"
@@ -88,20 +90,25 @@ const Search = () => {
                             <div className={cl.notCity}>
                                 Такого города нет
                             </div>
-                        :
+                            :
 
                             cityList.map((city: TCityList) => (
                                 <a className={cl.list__item} key={city.lat}>
                                     {
                                         city.local_names === undefined ?
-                                            <Link to={`/city/${city.lat}-${city.lon}`} style={{color:"#8A91AB"}} className={cl.result__link}>
-                                                <Highlighter highlightClassName={cl.highliter} searchWords={[searchString]} textToHighlight={city.name}/>
+                                            <Link to={`/city/${city.lat}-${city.lon}`} style={{color: "#8A91AB"}}
+                                                  className={cl.result__link}>
+                                                <Highlighter highlightClassName={cl.highliter}
+                                                             searchWords={[searchString]} textToHighlight={city.name}/>
 
                                             </Link>
 
                                             :
-                                            <Link to={`/city/${city.lat}-${city.lon}`} style={{color:"#8A91AB"}} className={cl.result__link}>
-                                                <Highlighter highlightClassName={cl.highliter} searchWords={[searchString]} textToHighlight={city.local_names.ru}/>
+                                            <Link to={`/city/${city.lat}-${city.lon}`} style={{color: "#8A91AB"}}
+                                                  className={cl.result__link}>
+                                                <Highlighter highlightClassName={cl.highliter}
+                                                             searchWords={[searchString]}
+                                                             textToHighlight={city.local_names.ru}/>
                                             </Link>
 
                                     }
@@ -109,18 +116,17 @@ const Search = () => {
                             ))
                     }
                 </div>
-                <div className={cl.info} style={searchString.length === 0 ? {visibility:"visible"} : {visibility:"hidden"}}>
-                    {/*<Icon id={"arrow"} className={cl.arrow}/>*/}
-                    <p className={cl.text}>
-                        <Icon id={"arrow"} className={cl.arrow}/>
-                        Начните вводить город, <br/> например, <a className={cl.link} onClick={() => {
-                        dispatch(setSearchString("Ижевск"))
-                    }}>Ижевск</a>
-                    </p>
-                </div>
             </form>
-
-
+            <div className={cl.info}
+                 style={searchString.length === 0 ? {visibility: "visible"} : {visibility: "hidden"}}>
+                {/*<Icon id={"arrow"} className={cl.arrow}/>*/}
+                <p className={cl.text}>
+                    <Icon id={"arrow"} className={cl.arrow}/>
+                    Начните вводить город, <br/> например, <a className={cl.link} onClick={() => {
+                    dispatch(setSearchString("Ижевск"))
+                }}>Ижевск</a>
+                </p>
+            </div>
         </div>
     );
 };
