@@ -120,6 +120,7 @@
 .text{
     text-align:  center;
     position: relative;
+    font-size: 16px;
 }
 
 .arrow{
