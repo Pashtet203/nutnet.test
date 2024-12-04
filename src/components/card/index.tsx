@@ -32,7 +32,7 @@ const Card = ({title,temp,imgName,lat,lon}:TCard) => {
             </button>
             <h5 className={cl.title}>{title}</h5>
             <div className={cl.temp}>
-                {temp}&deg;
+                {Math.round(temp)}&deg;
             </div>
             <Icon id={imgName} width={78} height={78}/>
         </Link>
