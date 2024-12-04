@@ -8,7 +8,7 @@ const initialState:IInitialStateHomeReducer = {
     searchString:"",
     cityList:[],
     weatherInCity: null,
-    favoriteCity:[],
+    favoriteCites:[],
 }
 
 const homeSlice = createSlice({
@@ -26,13 +26,14 @@ const homeSlice = createSlice({
         },
         setWeatherInCity:(state,action:PayloadAction<TWeatherInCity>) => {
             state.weatherInCity = action.payload;
+        },
+        addCityInFavoriteList:(state,action:PayloadAction<TWeatherInCity>) => {
+            state.favoriteCites = [...state.favoriteCites, action.payload]
+        },
+        removeCityInFavoriteList:(state,action:PayloadAction<{lat:number,lon:number}>) => {
+            state.favoriteCites = state.favoriteCites.filter(item => item.coord.lat !== action.payload.lat && item.coord.lon !== action.payload.lon);
         }
     },
-    extraReducers: builder =>
-        builder
-            // .addCase(getWeather.fulfilled,(state,action)=>{
-            //     console.log(action.payload)
-            // })
 })
 
 export const homeReducer = homeSlice.reducer
@@ -41,4 +42,6 @@ export const {
     clearListCity,
     setListCity,
     setWeatherInCity,
+    addCityInFavoriteList,
+    removeCityInFavoriteList,
 } = homeSlice.actions

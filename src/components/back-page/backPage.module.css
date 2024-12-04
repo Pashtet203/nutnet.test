@@ -2,7 +2,13 @@
     color: #8A91AB;
     display: flex;
     align-items: center;
+    cursor: pointer;
+    transition: all .3s;
+}
+.backPage:hover, .arrowLeft:hover{
+    color: white;
+    fill: white;
 }
 .arrowLeft{
-    margin-right: 15px;
+    margin-right: 5px;
 }

@@ -6,5 +6,5 @@ export interface IInitialStateHomeReducer {
     searchString: string;
     cityList: TCityList[],
     weatherInCity: TWeatherInCity | null,
-    favoriteCity: TWeatherInCity[],
+    favoriteCites: TWeatherInCity[],
 }

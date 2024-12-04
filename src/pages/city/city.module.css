@@ -1,0 +1,74 @@
+.city{
+    width: 100%;
+    min-height: 100%;
+
+}
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+.favorite__icon{
+    fill: #8A91AB;
+}
+
+.favorite__iconActive  {
+    fill: red;
+}
+.weather__info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+
+.name{
+    font-size: 56px;
+    font-weight: 500;
+}
+.description{
+    margin-top: 20px;
+}
+
+.weather{
+    display: flex;
+    align-items: center;
+}
+.temperature{
+    font-size: 130px;
+}
+.weather__icon{
+    width: 190px;
+    height: 190px;
+    margin: 0 auto;
+}
+
+.pressure{
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+}
+.pressure__info{
+    margin-left: 5px;
+}
+.sun{
+    margin-top: 40px;
+    color:#8A91AB;
+}
+.sun div{
+    min-width: 110px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+/*.time{*/
+/*    text-align: end;*/
+/*}*/
+
+@media (max-width: 440px) {
+    .weather{
+        display: flex;
+        flex-direction: column;
+    }
+}

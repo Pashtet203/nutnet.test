@@ -8,8 +8,8 @@ const BackPage = () => {
     const navigate = useNavigate();
 
     return (
-        <div className={cl.backPage}>
-            <Icon id={"arrowLeft"} className={cl.arrowLeft}/> Назад
+        <div className={cl.backPage} onClick={()=>{navigate(-1)}}>
+            <Icon id={"arrowLeft"} width={24} height={24} className={cl.arrowLeft}/> Назад
         </div>
     );
 };

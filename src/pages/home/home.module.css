@@ -1,5 +1,8 @@
 .home{
     width: 100%;
+}
+.wrapper{
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,4 +17,5 @@
 }
 .bookmark{
     margin-top: 20px;
+    fill: #8A91AB;
 }

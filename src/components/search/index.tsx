@@ -44,15 +44,14 @@ const Search = () => {
     }
 
     useEffect(()=>{
-        if (searchString.length > 2){
+        wrapperField.current.classList.remove(`${cl.hide}`)
+        if (searchString !== ""){
             if (!inputSearchField.current.classList.contains(`${cl.focus__input}`) || wrapperField.current.classList.contains(`${cl.hide}`)){
                 inputSearchField.current.classList.add(`${cl.focus__input}`)
                 wrapperField.current.classList.remove(`${cl.hide}`)
             }
-            if (cityList.length > 0){
-                wrapperField.current.classList.add(`${cl.hide}`)
-            }
             debouncedFetch(searchString)
+
         }
         else {
 
@@ -63,7 +62,11 @@ const Search = () => {
         if(searchString === ""){
             dispatch(clearListCity())
         }
-    },[searchString])
+        if (cityList.length !== 0){
+            wrapperField.current.classList.add(`${cl.hide}`)
+        }
+    },[searchString.length])
+
 
     return (
         <div className={cl.search}>
@@ -72,9 +75,7 @@ const Search = () => {
                 <input
                     ref={inputSearchField}
                     type="text"
-                    onBlur={() => setTimeout(() => {
-                        blurInput()
-                    }, 200)}
+                    onBlur={() => {setTimeout(()=>blurInput(),100)}}
                     onFocus={focusInput}
                     className={cl.field}
                     placeholder="Укажите город"
@@ -121,7 +122,7 @@ const Search = () => {
                  style={searchString.length === 0 ? {visibility: "visible"} : {visibility: "hidden"}}>
                 {/*<Icon id={"arrow"} className={cl.arrow}/>*/}
                 <p className={cl.text}>
-                    <Icon id={"arrow"} className={cl.arrow}/>
+                    <Icon id={"arrow"} className={cl.arrow} width={38} height={32}/>
                     Начните вводить город, <br/> например, <a className={cl.link} onClick={() => {
                     dispatch(setSearchString("Ижевск"))
                 }}>Ижевск</a>

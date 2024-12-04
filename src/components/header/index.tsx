@@ -6,13 +6,13 @@ import {ReactComponent as Logo} from "../../media/img/header/logo.svg"
 
 const Header = () => {
     return (
-        <div className={cl.header}>
+        <header className={cl.header}>
             <Link to={"/"} className={cl.home__link}>
                 <Icon id={"logo"} className={cl.logo}/>
                 <p className={cl.title}>WeatherCheck</p>
             </Link>
 
-        </div>
+        </header>
     );
 };
 

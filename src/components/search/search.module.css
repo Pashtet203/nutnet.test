@@ -25,6 +25,7 @@
 
 }
 .list__result{
+    z-index: 999;
     position: absolute;
     top: 55px;
     /*bottom: 0;*/
