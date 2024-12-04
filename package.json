@@ -1,7 +1,6 @@
 {
   "name": "nutnet.test",
   "version": "0.1.0",
-  "homepage": "https://github.com/Pashtet203/nutnet.test",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^2.4.0",
