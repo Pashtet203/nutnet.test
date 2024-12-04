@@ -10,5 +10,5 @@ export async function getListCity(str: string) {
         },
         mode: "cors"
     }
-    return await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${str},ru&limit=5&lang=ru&appid=c96e4811a5e6ab36888d6bee666c1af1`).then(checkResponse<TCityList[]>)
+    return await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${str},ru&limit=5&lang=ru&appid=c96e4811a5e6ab36888d6bee666c1af1`).then(checkResponse<TCityList[]>)
 }
