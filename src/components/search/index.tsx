@@ -34,7 +34,7 @@ const Search = () => {
     }
 
     const focusInput = () =>{
-        if (searchString.length > 0){
+        if (searchString.length > 0 || cityList.length !== 0){
             wrapperField.current.classList.remove(`${cl.hide}`)
         }
     }
@@ -45,7 +45,7 @@ const Search = () => {
 
     useEffect(()=>{
         wrapperField.current.classList.remove(`${cl.hide}`)
-        if (searchString !== ""){
+        if (searchString.length !== 0){
             if (!inputSearchField.current.classList.contains(`${cl.focus__input}`) || wrapperField.current.classList.contains(`${cl.hide}`)){
                 inputSearchField.current.classList.add(`${cl.focus__input}`)
                 wrapperField.current.classList.remove(`${cl.hide}`)
@@ -63,7 +63,7 @@ const Search = () => {
             dispatch(clearListCity())
         }
         if (cityList.length !== 0){
-            wrapperField.current.classList.add(`${cl.hide}`)
+            wrapperField.current.classList.remove(`${cl.hide}`)
         }
     },[searchString.length])
 
