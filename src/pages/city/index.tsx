@@ -11,6 +11,7 @@ import {useAppSelector} from "../../hooks/useAppSelector";
 import Icon from "../../components/icon";
 import {decodingUNIX} from "../../utils/decodingUNIX";
 import {TWeatherInCity} from "../../utils/types/weather";
+import Loader from "../../components/loader";
 
 const CityPage = () => {
 
@@ -48,37 +49,45 @@ const CityPage = () => {
                     <FavoriteIcon className={checkCityInFavoriteList() ? cl.favorite__iconActive : cl.favorite__icon} />
                 </div>
             </div>
-            <div className={cl.weather__info}>
-                <h3 className={cl.name}>
-                    {cityInfo?.name}
-                </h3>
-                <p className={cl.description}>
-                    {cityInfo?.weather[0].description}
-                </p>
-                <div className={cl.weather}>
-                    <div className={cl.temperature}>
-                        {Math.round(cityInfo?.main.temp as number)} &deg;
-                    </div>
-                    <Icon id={cityInfo?.weather[0].main as string} className={cl.weather__icon} width={191} height={191}/>
-                </div>
-                <div className={cl.pressure}>
-                    <Icon id={"barometer"} width={24} height={24}/>
-                    <p className={cl.pressure__info}>
-                        {cityInfo?.main.pressure} мм. рт.ст
-                    </p>
-                </div>
-                <div className={cl.sun}>
-                    <div className={cl.sunrise}>
-                        Восход: <p>{decodingUNIX(Number(cityInfo?.sys.sunrise))}</p>
+            {
+                loading
+                    ?
+                    <div className={cl.loader__wrapper}><Loader/></div>
+                    :
+                    <div className={cl.weather__info}>
+                        <h3 className={cl.name}>
+                            {cityInfo?.name}
+                        </h3>
+                        <p className={cl.description}>
+                            {cityInfo?.weather[0].description}
+                        </p>
+                        <div className={cl.weather}>
+                            <div className={cl.temperature}>
+                                {Math.round(cityInfo?.main.temp as number)} &deg;
+                            </div>
+                            <Icon id={cityInfo?.weather[0].main as string} className={cl.weather__icon} width={191}
+                                  height={191}/>
+                        </div>
+                        <div className={cl.pressure}>
+                            <Icon id={"barometer"} width={24} height={24}/>
+                            <p className={cl.pressure__info}>
+                                {cityInfo?.main.pressure} мм. рт.ст
+                            </p>
+                        </div>
+                        <div className={cl.sun}>
+                            <div className={cl.sunrise}>
+                                Восход: <p>{decodingUNIX(Number(cityInfo?.sys.sunrise))}</p>
+
+                            </div>
+                            <div className={cl.sunset}>
+                                Закат: <p>{decodingUNIX(Number(cityInfo?.sys.sunset))}</p>
+
+                            </div>
+                        </div>
 
                     </div>
-                    <div className={cl.sunset}>
-                        Закат: <p>{decodingUNIX(Number(cityInfo?.sys.sunset))}</p>
+            }
 
-                    </div>
-                </div>
-
-            </div>
         </div>
     );
 };

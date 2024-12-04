@@ -1,13 +1,22 @@
-.city{
+.city {
     width: 100%;
     min-height: 100%;
+    position: relative;
 
 }
+
 .header{
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-top: 30px;
+}
+.loader__wrapper{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 .favorite__icon{
     fill: #8A91AB;
@@ -21,11 +30,13 @@
     flex-direction: column;
     align-items: center;
     color: white;
+    word-break: break-word;
 }
 
 .name{
     font-size: 56px;
     font-weight: 500;
+    word-break: break-word;
 }
 .description{
     margin-top: 20px;

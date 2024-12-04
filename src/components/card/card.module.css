@@ -36,6 +36,7 @@
 .title{
     font-size: 14px;
     font-weight: 400;
+    word-break: break-word;
 }
 .temp{
     font-size: 40px;

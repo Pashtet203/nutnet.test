@@ -89,6 +89,24 @@
     outline: none;
 }
 
+.clear__btn{
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 12px;
+    bottom: 0;
+    border-radius: 50%;
+    background-color: transparent;
+    border: white;
+}
+.clear__btn:hover .icon{
+    stroke: #161B30;
+}
+.icon{
+    stroke: white;
+    transition: all .3s;
+}
+
 .info{
     color: #8A91AB;
     max-width: 210px;

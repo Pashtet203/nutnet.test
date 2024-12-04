@@ -9,6 +9,7 @@ const initialState:IInitialStateHomeReducer = {
     cityList:[],
     weatherInCity: null,
     favoriteCites:[],
+    loading: false,
 }
 
 const homeSlice = createSlice({

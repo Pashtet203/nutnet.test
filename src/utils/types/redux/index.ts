@@ -7,4 +7,5 @@ export interface IInitialStateHomeReducer {
     cityList: TCityList[],
     weatherInCity: TWeatherInCity | null,
     favoriteCites: TWeatherInCity[],
+    loading: boolean,
 }

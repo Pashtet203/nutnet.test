@@ -35,17 +35,23 @@ const Search = () => {
 
     const focusInput = () =>{
         if (searchString.length > 0 || cityList.length !== 0){
-            wrapperField.current.classList.remove(`${cl.hide}`)
+            if (!inputSearchField.current.classList.contains(`${cl.focus__input}`) || wrapperField.current.classList.contains(`${cl.hide}`)){
+                wrapperField.current.classList.toggle(`${cl.hide}`)
+                inputSearchField.current.classList.toggle(`${cl.focus__input}`)
+            }
         }
     }
     const blurInput = () =>{
         wrapperField.current?.classList.add(`${cl.hide}`)
         inputSearchField.current?.classList.remove(`${cl.focus__input}`)
     }
+    const clearSearchField = (e:any) =>{
+        e.preventDefault();
+        dispatch(setSearchString(""))
+    }
 
     useEffect(()=>{
-        wrapperField.current.classList.remove(`${cl.hide}`)
-        if (searchString.length !== 0){
+        if (searchString.length > 0){
             if (!inputSearchField.current.classList.contains(`${cl.focus__input}`) || wrapperField.current.classList.contains(`${cl.hide}`)){
                 inputSearchField.current.classList.add(`${cl.focus__input}`)
                 wrapperField.current.classList.remove(`${cl.hide}`)
@@ -63,7 +69,7 @@ const Search = () => {
             dispatch(clearListCity())
         }
         if (cityList.length !== 0){
-            wrapperField.current.classList.remove(`${cl.hide}`)
+            wrapperField.current.classList.add(`${cl.hide}`)
         }
     },[searchString.length])
 
@@ -84,8 +90,11 @@ const Search = () => {
                         handlerSearchField(e)
                     }}
                 />
+                <button className={cl.clear__btn} onClick={clearSearchField}>
+                    <Icon id={"delete"} width={24} height={24} className={cl.icon}/>
+                </button>
 
-                <div className={cl.list__result} ref={wrapperField}>
+                <div className={`${cl.list__result} ${cl.hide}`} ref={wrapperField}>
                     {
                         cityList.length === 0 ?
                             <div className={cl.notCity}>

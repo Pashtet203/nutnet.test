@@ -1,7 +1,10 @@
 
 .App{
+    position: relative;
     background-color: #161B30;
+
 }
+
 .container{
     min-height: 100vh;
     height: 100%;
