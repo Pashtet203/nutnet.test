@@ -33,8 +33,19 @@ const Search = () => {
     const handlerSearchField = (e:any) =>{
             dispatch(setSearchString(e.target.value))
     }
+    const handlerKeyDown = (e:any) =>{
+
+        if (e.key === "Enter" && searchString.length > 2){
+            e.preventDefault()
+            debouncedFetch(searchString)
+        }
+        else{
+            return
+        }
+    }
 
     const focusInput = () =>{
+        wrapperField.current.classList.remove(`${cl.hide}`)
         if (searchString.length > 0 || cityList.length !== 0){
             if (!inputSearchField.current.classList.contains(`${cl.focus__input}`) || wrapperField.current.classList.contains(`${cl.hide}`)){
                 wrapperField.current.classList.toggle(`${cl.hide}`)
@@ -84,6 +95,7 @@ const Search = () => {
                     type="text"
                     onBlur={() => {setTimeout(()=>blurInput(),100)}}
                     onFocus={focusInput}
+                    onKeyDown={handlerKeyDown}
                     className={cl.field}
                     placeholder="Укажите город"
                     value={searchString}
