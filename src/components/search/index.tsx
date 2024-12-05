@@ -10,6 +10,7 @@ import {TCityList} from "../../utils/types/cityList";
 import {getListCity} from "../../utils/api/weather/getListCity";
 import Highlighter from "react-highlight-words";
 import {Link} from "react-router-dom";
+import Loader from "../loader";
 
 const Search = () => {
     const dispatch = useAppDispatch();
@@ -96,35 +97,41 @@ const Search = () => {
 
                 <div className={`${cl.list__result} ${cl.hide}`} ref={wrapperField}>
                     {
-                        cityList.length === 0 ?
-                            <div className={cl.notCity}>
-                                Такого города нет
-                            </div>
-                            :
+                        loading
+                        ?
+                            <div className={cl.loader__wrapper}><Loader/></div>
+                        :
+                                cityList.length === 0 ?
+                                    <div className={cl.notCity}>
+                                        Такого города нет
+                                    </div>
+                                    :
 
-                            cityList.map((city: TCityList) => (
-                                <a className={cl.list__item} key={city.lat}>
-                                    {
-                                        city.local_names === undefined ?
-                                            <Link to={`/city/${city.lat}-${city.lon}`} style={{color: "#8A91AB"}}
-                                                  className={cl.result__link}>
-                                                <Highlighter highlightClassName={cl.highliter}
-                                                             searchWords={[searchString]} textToHighlight={city.name}/>
+                                    cityList.map((city: TCityList) => (
+                                        <a className={cl.list__item} key={city.lat}>
+                                            {
+                                                city.local_names === undefined ?
+                                                    <Link to={`/city/${city.lat}-${city.lon}`} style={{color: "#8A91AB"}}
+                                                          className={cl.result__link}>
+                                                        <Highlighter highlightClassName={cl.highliter}
+                                                                     searchWords={[searchString]} textToHighlight={city.name}/>
 
-                                            </Link>
+                                                    </Link>
 
-                                            :
-                                            <Link to={`/city/${city.lat}-${city.lon}`} style={{color: "#8A91AB"}}
-                                                  className={cl.result__link}>
-                                                <Highlighter highlightClassName={cl.highliter}
-                                                             searchWords={[searchString]}
-                                                             textToHighlight={city.local_names.ru}/>
-                                            </Link>
+                                                    :
+                                                    <Link to={`/city/${city.lat}-${city.lon}`} style={{color: "#8A91AB"}}
+                                                          className={cl.result__link}>
+                                                        <Highlighter highlightClassName={cl.highliter}
+                                                                     searchWords={[searchString]}
+                                                                     textToHighlight={city.local_names.ru}/>
+                                                    </Link>
 
-                                    }
-                                </a>
-                            ))
+                                            }
+                                        </a>
+                                    ))
+
                     }
+
                 </div>
             </form>
             <div className={cl.info}
