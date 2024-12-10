@@ -45,7 +45,6 @@ const Search = () => {
     }
 
     const focusInput = () =>{
-        wrapperField.current.classList.remove(`${cl.hide}`)
         if (searchString.length > 0 || cityList.length !== 0){
             if (!inputSearchField.current.classList.contains(`${cl.focus__input}`) || wrapperField.current.classList.contains(`${cl.hide}`)){
                 wrapperField.current.classList.toggle(`${cl.hide}`)
@@ -76,14 +75,11 @@ const Search = () => {
             inputSearchField.current.classList.remove(`${cl.focus__input}`)
             wrapperField.current.classList.add(`${cl.hide}`)
         }
-
         if(searchString === ""){
             dispatch(clearListCity())
         }
-        if (cityList.length !== 0){
-            wrapperField.current.classList.add(`${cl.hide}`)
-        }
     },[searchString.length])
+
 
 
     return (
